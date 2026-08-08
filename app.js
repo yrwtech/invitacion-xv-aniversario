@@ -76,17 +76,47 @@ function render(){
       </div>
     </article>`).join("");
 
-  $("#timeline").innerHTML=C.itinerario.map((item,index)=>`
-    <article class="timeline-item" data-timeline-item>
-      <div class="timeline-node">
-        <span class="timeline-icon">${iconSVG(item.icono)}</span>
-      </div>
-      <div class="timeline-copy">
-        <span class="timeline-time">${item.hora}</span>
-        <h3>${item.titulo}</h3>
-        <p>${item.descripcion}</p>
-      </div>
-    </article>`).join("");
+  const defaultTimelineDate=String(C.fechaISO||"").slice(0,10);
+  const timelineItems=(C.itinerario||[]).map(item=>({
+    ...item,
+    fecha:item.fecha||defaultTimelineDate
+  }));
+
+  const formatTimelineDate=iso=>{
+    const parts=String(iso||"").split("-").map(Number);
+    if(parts.length!==3||parts.some(n=>!Number.isFinite(n)))return {weekday:"",date:iso||""};
+    // Mediodía local evita saltos de fecha por zona horaria.
+    const d=new Date(parts[0],parts[1]-1,parts[2],12,0,0);
+    return {
+      weekday:new Intl.DateTimeFormat("es-MX",{weekday:"long"}).format(d).toUpperCase(),
+      date:new Intl.DateTimeFormat("es-MX",{day:"numeric",month:"long",year:"numeric"}).format(d).toUpperCase()
+    };
+  };
+
+  let lastTimelineDate="";
+  $("#timeline").innerHTML=timelineItems.map(item=>{
+    const showDate=item.fecha!==lastTimelineDate;
+    lastTimelineDate=item.fecha;
+    const label=formatTimelineDate(item.fecha);
+    return `${showDate?`
+      <div class="timeline-date" data-timeline-date>
+        <div class="timeline-date-node" aria-hidden="true"><span></span></div>
+        <div class="timeline-date-copy">
+          <span>${label.weekday}</span>
+          <strong>${label.date}</strong>
+        </div>
+      </div>`:""}
+      <article class="timeline-item" data-timeline-item>
+        <div class="timeline-node">
+          <span class="timeline-icon">${iconSVG(item.icono)}</span>
+        </div>
+        <div class="timeline-copy">
+          <span class="timeline-time">${item.hora}</span>
+          <h3>${item.titulo}</h3>
+          <p>${item.descripcion}</p>
+        </div>
+      </article>`;
+  }).join("");
 
   const chapters=C.galeria?.capitulos||[];
   if(C.galeria?.activa&&chapters.length){
@@ -181,7 +211,7 @@ function initScrollCinema(){
 function initTimeline(){
   const section=$("#momentsSection");
   const fill=$("#timelineFill");
-  const items=$$("[data-timeline-item]");
+  const items=$$("[data-timeline-item], [data-timeline-date]");
   if(!section||!fill||!items.length)return;
 
   const observer=new IntersectionObserver(entries=>{

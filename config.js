@@ -1,5 +1,5 @@
 // ==========================================================
-// CONFIGURACIÓN PRINCIPAL DE LA INVITACIÓN — V10.2
+// CONFIGURACIÓN PRINCIPAL DE LA INVITACIÓN — V10.3
 // ==========================================================
 window.INVITACION = {
   festejada: "Sofía Mendoza",
@@ -51,12 +51,14 @@ window.INVITACION = {
     }
   ],
 
+  // Cada momento tiene su propia fecha. El itinerario agrupa automáticamente
+  // los eventos por día y crea un nuevo encabezado cuando cambia la fecha.
   itinerario: [
-    { hora: "17:00", titulo: "Ceremonia", descripcion: "El comienzo de un día inolvidable.", icono: "iglesia" },
-    { hora: "19:00", titulo: "Bienvenida", descripcion: "Cóctel, fotografías y reencuentros.", icono: "copa" },
-    { hora: "20:00", titulo: "Cena", descripcion: "Una mesa para compartir historias.", icono: "cubiertos" },
-    { hora: "21:30", titulo: "Vals", descripcion: "El momento más esperado de la noche.", icono: "musica" },
-    { hora: "22:00", titulo: "Fiesta", descripcion: "La noche apenas comienza.", icono: "estrella" }
+    { fecha: "2026-12-12", hora: "17:00", titulo: "Ceremonia", descripcion: "El comienzo de un día inolvidable.", icono: "iglesia" },
+    { fecha: "2026-12-12", hora: "19:00", titulo: "Bienvenida", descripcion: "Cóctel, fotografías y reencuentros.", icono: "copa" },
+    { fecha: "2026-12-12", hora: "20:00", titulo: "Cena", descripcion: "Una mesa para compartir historias.", icono: "cubiertos" },
+    { fecha: "2026-12-12", hora: "21:30", titulo: "Vals", descripcion: "El momento más esperado de la noche.", icono: "musica" },
+    { fecha: "2026-12-12", hora: "22:00", titulo: "Fiesta", descripcion: "La noche apenas comienza.", icono: "estrella" }
   ],
 
   galeria: {
