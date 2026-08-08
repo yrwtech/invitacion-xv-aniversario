@@ -24,7 +24,7 @@ function render(){
   const first=C.festejada.split(" ")[0];
 
   setText("#introName",first);
-  setText("#introMessage",C.intro?.mensaje||"Tu invitación ha llegado.");
+  setText("#introMessage",C.intro?.mensaje||"Tiene algo muy especial que compartir contigo.");
   setText("#introInstruction",C.intro?.instruccion||"Abre aquí");
   setText("#heroName",first);
   setText("#heroMessage",C.portada.mensaje);

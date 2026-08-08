@@ -1,5 +1,5 @@
 // ==========================================================
-// CONFIGURACIÓN PRINCIPAL DE LA INVITACIÓN — V10.1
+// CONFIGURACIÓN PRINCIPAL DE LA INVITACIÓN — V10.2
 // ==========================================================
 window.INVITACION = {
   festejada: "Sofía Mendoza",
@@ -10,7 +10,7 @@ window.INVITACION = {
 
   intro: {
     foto: "./assets/fotos/sobre.jpg",
-    mensaje: "Tu invitación ha llegado.",
+    mensaje: "Tiene algo muy especial que compartir contigo.",
     instruccion: "Abre aquí",
     hotspot: {
       x: 0.421,
