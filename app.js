@@ -501,6 +501,15 @@ function initMusic(){
 let pendingResponse="Confirmo";
 const RSVP_STORAGE_KEY=`yrw-rsvp:${C.festejada}:${C.fechaISO}`;
 
+function initTestReset(){
+  const params=new URLSearchParams(location.search);
+  if(params.get("reset")!=="1")return;
+  try{localStorage.removeItem(RSVP_STORAGE_KEY)}catch{}
+  params.delete("reset");
+  const clean=location.pathname+(params.toString()?`?${params}`:"")+location.hash;
+  history.replaceState({},"",clean);
+}
+
 function getStoredRSVP(){
   try{return localStorage.getItem(RSVP_STORAGE_KEY)||""}catch{return ""}
 }
@@ -685,6 +694,7 @@ END:VCALENDAR`;
 }
 
 render();
+initTestReset();
 initIntro();
 initReveal();
 initScrollCinema();

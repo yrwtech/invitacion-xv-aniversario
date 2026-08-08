@@ -1,5 +1,5 @@
 // ==========================================================
-// CONFIGURACIÓN PRINCIPAL DE LA INVITACIÓN — V10
+// CONFIGURACIÓN PRINCIPAL DE LA INVITACIÓN — V10.1
 // ==========================================================
 window.INVITACION = {
   festejada: "Sofía Mendoza",
