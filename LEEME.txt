@@ -1,4 +1,4 @@
-INVITACIÓN XV — V10.5
+INVITACIÓN XV — V10.6
 
 REEMPLAZA EN LA RAÍZ DE GITHUB:
 - index.html
@@ -62,3 +62,10 @@ WHATSAPP RSVP — V10.5
 - Se usa wa.me para Android, iOS y escritorio.
 - El invitado debe pulsar Enviar dentro de WhatsApp.
 - Documentación: docs/WHATSAPP_RSVP.md
+
+
+CORRECCIÓN V10.6:
+- El botón de WhatsApp se conserva después de recargar.
+- Se guardan localmente los datos necesarios para el mensaje.
+- Respuestas antiguas muestran un mensaje resumido en WhatsApp.
+- Para probar desde cero: ?reset=1

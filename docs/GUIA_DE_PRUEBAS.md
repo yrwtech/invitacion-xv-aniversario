@@ -80,3 +80,13 @@ Probar tanto en Android como en iPhone:
 8. Revisar que el mensaje contenga respuesta, nombre, correo, WhatsApp, comentarios, evento y fecha.
 9. Pulsar **Enviar** en WhatsApp.
 10. Probar también la respuesta **No asistiré**.
+
+
+### Prueba de persistencia V10.6
+
+Después de confirmar:
+1. Comprobar que aparece el botón de WhatsApp.
+2. Recargar la página.
+3. Verificar que el botón siga apareciendo.
+4. Abrir WhatsApp y comprobar que conserva los datos del RSVP.
+5. Probar `?reset=1` y confirmar que desaparece el estado anterior.

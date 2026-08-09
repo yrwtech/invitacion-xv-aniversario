@@ -561,11 +561,15 @@ function initMusic(){
 
 let pendingResponse="Confirmo";
 const RSVP_STORAGE_KEY=`yrw-rsvp:${C.festejada}:${C.fechaISO}`;
+const RSVP_DATA_STORAGE_KEY=`yrw-rsvp-data:${C.festejada}:${C.fechaISO}`;
 
 function initTestReset(){
   const params=new URLSearchParams(location.search);
   if(params.get("reset")!=="1")return;
-  try{localStorage.removeItem(RSVP_STORAGE_KEY)}catch{}
+  try{
+    localStorage.removeItem(RSVP_STORAGE_KEY);
+    localStorage.removeItem(RSVP_DATA_STORAGE_KEY);
+  }catch{}
   params.delete("reset");
   const clean=location.pathname+(params.toString()?`?${params}`:"")+location.hash;
   history.replaceState({},"",clean);
@@ -574,14 +578,32 @@ function initTestReset(){
 function getStoredRSVP(){
   try{return localStorage.getItem(RSVP_STORAGE_KEY)||""}catch{return ""}
 }
-function storeRSVP(response){
-  try{localStorage.setItem(RSVP_STORAGE_KEY,response)}catch{}
+
+function getStoredRSVPData(){
+  try{
+    const raw=localStorage.getItem(RSVP_DATA_STORAGE_KEY);
+    return raw?JSON.parse(raw):null;
+  }catch{
+    return null;
+  }
+}
+
+function storeRSVP(response,data=null){
+  try{
+    localStorage.setItem(RSVP_STORAGE_KEY,response);
+    if(data){
+      localStorage.setItem(RSVP_DATA_STORAGE_KEY,JSON.stringify(data));
+    }
+  }catch{}
 }
 
 
-function buildWhatsAppRSVP({respuesta,nombre,correo,whatsapp,comentarios}){
+function buildWhatsAppRSVP(data={}){
   const w=C.whatsappRSVP;
   if(!w?.activo||!w.telefono)return null;
+
+  const respuesta=data.respuesta||getStoredRSVP()||"";
+  if(!respuesta)return null;
 
   const estado=respuesta==="Confirmo"?"✅":"❌";
   const texto=[
@@ -590,26 +612,34 @@ function buildWhatsAppRSVP({respuesta,nombre,correo,whatsapp,comentarios}){
     `XV de ${C.festejada}`,
     C.fechaTexto,
     "",
-    `${estado} Respuesta: ${respuesta}`,
-    "",
-    `👤 Nombre: ${nombre}`,
-    `📧 Correo: ${correo}`,
-    `📱 WhatsApp: ${whatsapp}`,
-    "",
-    "💬 Comentarios:",
-    comentarios||"(Sin comentarios)"
-  ].join("\n");
+    `${estado} Respuesta: ${respuesta}`
+  ];
+
+  if(data.nombre||data.correo||data.whatsapp){
+    texto.push("");
+    if(data.nombre)texto.push(`👤 Nombre: ${data.nombre}`);
+    if(data.correo)texto.push(`📧 Correo: ${data.correo}`);
+    if(data.whatsapp)texto.push(`📱 WhatsApp: ${data.whatsapp}`);
+  }
+
+  if(data.comentarios){
+    texto.push("","💬 Comentarios:",data.comentarios);
+  }
 
   const telefono=String(w.telefono).replace(/\D/g,"");
-  return `https://wa.me/${telefono}?text=${encodeURIComponent(texto)}`;
+  return `https://wa.me/${telefono}?text=${encodeURIComponent(texto.join("\n"))}`;
 }
 
-function configureWhatsAppRSVP(data){
+function configureWhatsAppRSVP(data=null){
   const box=$("#whatsappRSVPBox");
   const button=$("#whatsappRSVPButton");
+  const hint=box?.querySelector(".whatsapp-rsvp-hint");
   if(!box||!button)return;
 
-  const url=buildWhatsAppRSVP(data);
+  const storedData=getStoredRSVPData();
+  const payload=data||storedData||{respuesta:getStoredRSVP()};
+  const url=buildWhatsAppRSVP(payload);
+
   if(!url){
     box.hidden=true;
     button.onclick=null;
@@ -617,15 +647,22 @@ function configureWhatsAppRSVP(data){
   }
 
   box.hidden=false;
+
+  if(hint){
+    hint.textContent=storedData||data
+      ?"Tu respuesta ya fue registrada. Si deseas, puedes enviarla también por WhatsApp al organizador."
+      :"Tu respuesta ya estaba registrada. Puedes enviar también por WhatsApp un resumen de tu confirmación.";
+  }
+
   button.onclick=()=>{
-    // wa.me funciona como enlace universal para Android, iOS y escritorio.
-    // WhatsApp exige que el invitado confirme el envío dentro de la app.
+    // Enlace universal compatible con Android, iOS y escritorio.
     window.location.href=url;
   };
 }
 
-function applyCompletedRSVP(response,shouldStore=true){
-  if(shouldStore)storeRSVP(response);
+function applyCompletedRSVP(response,shouldStore=true,data=null){
+  const payload=data?{...data,respuesta:response}:null;
+  if(shouldStore)storeRSVP(response,payload);
 
   $$("[data-response]").forEach(btn=>{
     btn.disabled=true;
@@ -638,6 +675,8 @@ function applyCompletedRSVP(response,shouldStore=true){
   }else{
     $("#rsvpStatus").textContent="Respuesta registrada: no asistirás. Gracias por avisarnos.";
   }
+
+  configureWhatsAppRSVP(payload);
   $("#exitButton").hidden=false;
 }
 
@@ -701,9 +740,7 @@ async function submitRSVPForm(e){
     });
 
     status.textContent="¡Gracias! Tu respuesta fue enviada.";
-    applyCompletedRSVP(pendingResponse,true);
-    configureWhatsAppRSVP({
-      respuesta:pendingResponse,
+    applyCompletedRSVP(pendingResponse,true,{
       nombre,
       correo,
       whatsapp,
@@ -758,7 +795,9 @@ function exitInvitation(){
 
 function initRSVP(){
   const stored=getStoredRSVP();
-  if(stored==="Confirmo"||stored==="No asistiré")applyCompletedRSVP(stored,false);
+  if(stored==="Confirmo"||stored==="No asistiré"){
+    applyCompletedRSVP(stored,false,getStoredRSVPData());
+  }
 
   $$("[data-response]").forEach(btn=>{
     btn.addEventListener("click",()=>{

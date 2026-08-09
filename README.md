@@ -2,7 +2,7 @@
 
 Invitación digital móvil desarrollada en HTML, CSS y JavaScript puro para publicarse con GitHub Pages.
 
-**Versión base documentada:** V10.5
+**Versión base documentada:** V10.6
 
 ## Estructura principal
 
@@ -136,3 +136,12 @@ whatsappRSVP: {
 ```
 
 Consulta `docs/WHATSAPP_RSVP.md`.
+
+
+### Persistencia del RSVP por WhatsApp
+
+La V10.6 guarda además los datos necesarios para reconstruir el mensaje de WhatsApp después de recargar la página.
+
+También conserva compatibilidad con respuestas registradas en versiones anteriores: si existe una respuesta antigua sin datos personales almacenados, se muestra un mensaje resumido de WhatsApp en vez de ocultar el botón.
+
+`?reset=1` elimina tanto la respuesta como los datos locales del RSVP.

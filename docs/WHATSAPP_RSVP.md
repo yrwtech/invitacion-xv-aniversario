@@ -65,3 +65,24 @@ Es un enlace universal adecuado para Android, iOS y escritorio.
 5. El invitado pulsa **Enviar**.
 
 La página web no intenta mandar mensajes automáticamente sin intervención del invitado.
+
+
+## Persistencia V10.6
+
+Además de la clave histórica:
+
+```text
+yrw-rsvp:<festejada>:<fechaISO>
+```
+
+se utiliza:
+
+```text
+yrw-rsvp-data:<festejada>:<fechaISO>
+```
+
+La segunda clave guarda localmente los datos necesarios para reconstruir el mensaje de WhatsApp después de una recarga.
+
+Las respuestas creadas antes de V10.6 pueden no tener ese segundo objeto. En ese caso la invitación muestra igualmente el botón de WhatsApp y prepara un mensaje resumido con evento, fecha y respuesta.
+
+Para una prueba limpia utiliza `?reset=1`.

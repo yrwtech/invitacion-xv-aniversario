@@ -1,5 +1,13 @@
 # Changelog
 
+## V10.6
+- Corregido el caso en que “Enviar también por WhatsApp” no aparecía si el navegador ya tenía una respuesta RSVP guardada de una versión anterior.
+- Se guarda ahora un segundo objeto de `localStorage` con nombre, correo, WhatsApp y comentarios para reconstruir el mensaje después de recargar.
+- El botón de WhatsApp se restaura automáticamente al volver a abrir la invitación.
+- Para respuestas antiguas sin datos guardados se muestra igualmente un mensaje resumido de WhatsApp.
+- `?reset=1` elimina tanto la respuesta como los datos RSVP almacenados.
+
+
 ## V10.5
 - Añadido RSVP complementario por WhatsApp.
 - Destino configurado en `config.js`.
