@@ -1,5 +1,16 @@
 # Changelog
 
+## V10.5
+- Añadido RSVP complementario por WhatsApp.
+- Destino configurado en `config.js`.
+- Mensaje prellenado con respuesta, nombre, correo, WhatsApp, comentarios, evento y fecha.
+- Uso de `https://wa.me/` para Android, iOS y escritorio.
+- El correo vía Google Apps Script continúa siendo el registro principal.
+- El botón “Enviar también por WhatsApp” aparece después de registrar exitosamente el RSVP.
+- El invitado conserva el control final: debe tocar **Enviar** dentro de WhatsApp.
+- Documentación ampliada en `docs/WHATSAPP_RSVP.md` y guía de pruebas.
+
+
 ## V10.4
 - Android abre Google Calendar en vez de descargar `.ics`.
 - iPhone/iPad conserva flujo `.ics`.

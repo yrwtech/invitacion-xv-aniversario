@@ -2,7 +2,7 @@
 
 Invitación digital móvil desarrollada en HTML, CSS y JavaScript puro para publicarse con GitHub Pages.
 
-**Versión base documentada:** V10.4
+**Versión base documentada:** V10.5
 
 ## Estructura principal
 
@@ -111,3 +111,28 @@ Consulta:
 - `docs/RSVP_GOOGLE_APPS_SCRIPT.md`
 - `docs/MUSICA.md`
 - `docs/ASSETS.md`
+
+
+## RSVP por WhatsApp
+
+La V10.5 mantiene el correo automático como registro principal y añade un segundo canal opcional por WhatsApp.
+
+Después de registrar correctamente la respuesta aparece el botón:
+
+```text
+Enviar también por WhatsApp
+```
+
+La invitación abre un enlace universal `wa.me` con el mensaje prellenado. El invitado debe pulsar **Enviar** dentro de WhatsApp.
+
+El destino se configura en `config.js`:
+
+```js
+whatsappRSVP: {
+  activo: true,
+  telefono: "523315209678",
+  encabezado: "RESPUESTA A LA INVITACIÓN"
+}
+```
+
+Consulta `docs/WHATSAPP_RSVP.md`.

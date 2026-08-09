@@ -578,6 +578,52 @@ function storeRSVP(response){
   try{localStorage.setItem(RSVP_STORAGE_KEY,response)}catch{}
 }
 
+
+function buildWhatsAppRSVP({respuesta,nombre,correo,whatsapp,comentarios}){
+  const w=C.whatsappRSVP;
+  if(!w?.activo||!w.telefono)return null;
+
+  const estado=respuesta==="Confirmo"?"✅":"❌";
+  const texto=[
+    `💗 ${w.encabezado||"RESPUESTA A LA INVITACIÓN"}`,
+    "",
+    `XV de ${C.festejada}`,
+    C.fechaTexto,
+    "",
+    `${estado} Respuesta: ${respuesta}`,
+    "",
+    `👤 Nombre: ${nombre}`,
+    `📧 Correo: ${correo}`,
+    `📱 WhatsApp: ${whatsapp}`,
+    "",
+    "💬 Comentarios:",
+    comentarios||"(Sin comentarios)"
+  ].join("\n");
+
+  const telefono=String(w.telefono).replace(/\D/g,"");
+  return `https://wa.me/${telefono}?text=${encodeURIComponent(texto)}`;
+}
+
+function configureWhatsAppRSVP(data){
+  const box=$("#whatsappRSVPBox");
+  const button=$("#whatsappRSVPButton");
+  if(!box||!button)return;
+
+  const url=buildWhatsAppRSVP(data);
+  if(!url){
+    box.hidden=true;
+    button.onclick=null;
+    return;
+  }
+
+  box.hidden=false;
+  button.onclick=()=>{
+    // wa.me funciona como enlace universal para Android, iOS y escritorio.
+    // WhatsApp exige que el invitado confirme el envío dentro de la app.
+    window.location.href=url;
+  };
+}
+
 function applyCompletedRSVP(response,shouldStore=true){
   if(shouldStore)storeRSVP(response);
 
@@ -597,6 +643,8 @@ function applyCompletedRSVP(response,shouldStore=true){
 
 function openRSVPModal(response){
   pendingResponse=response;
+  const whatsappBox=$("#whatsappRSVPBox");
+  if(whatsappBox)whatsappBox.hidden=true;
   $("#rsvpResponse").value=response;
   $("#rsvpModalTitle").textContent=response==="Confirmo"?"Confirma tus datos":"Datos de contacto";
   $("#submitRSVP").textContent=response==="Confirmo"?"Enviar confirmación":"Enviar respuesta";
@@ -654,6 +702,13 @@ async function submitRSVPForm(e){
 
     status.textContent="¡Gracias! Tu respuesta fue enviada.";
     applyCompletedRSVP(pendingResponse,true);
+    configureWhatsAppRSVP({
+      respuesta:pendingResponse,
+      nombre,
+      correo,
+      whatsapp,
+      comentarios
+    });
 
     setTimeout(()=>{
       closeRSVPModal();

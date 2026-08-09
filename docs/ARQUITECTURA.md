@@ -81,3 +81,24 @@ No se debe confiar en autoplay al cargar la página. El intento de reproducción
 ## Regla de assets
 
 Los medios no deben contener textos variables del evento. El contenido dinámico siempre pertenece al código.
+
+
+## RSVP por WhatsApp
+
+WhatsApp funciona como canal complementario, no como sustituto del correo:
+
+```text
+Formulario RSVP
+    ↓
+Google Apps Script → correo
+    ↓
+Botón opcional “Enviar también por WhatsApp”
+    ↓
+wa.me → WhatsApp
+    ↓
+El invitado pulsa Enviar
+```
+
+Se usa `https://wa.me/` y no esquemas específicos como `whatsapp://` o `intent://`, para mejorar compatibilidad entre Android, iOS, escritorio y navegadores internos.
+
+El navegador solo puede preparar y abrir el mensaje; WhatsApp requiere la acción final del usuario para enviarlo.

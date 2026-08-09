@@ -1,4 +1,4 @@
-INVITACIÓN XV — V10.4
+INVITACIÓN XV — V10.5
 
 REEMPLAZA EN LA RAÍZ DE GITHUB:
 - index.html
@@ -53,3 +53,12 @@ DOCUMENTACIÓN:
 - docs/
 - google-apps-script-rsvp.gs
 - VERSION.txt
+
+
+WHATSAPP RSVP — V10.5
+- Se mantiene el correo como registro principal.
+- Después del RSVP aparece “Enviar también por WhatsApp”.
+- Destino configurado en config.js.
+- Se usa wa.me para Android, iOS y escritorio.
+- El invitado debe pulsar Enviar dentro de WhatsApp.
+- Documentación: docs/WHATSAPP_RSVP.md

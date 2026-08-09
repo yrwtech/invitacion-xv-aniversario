@@ -314,3 +314,29 @@ body.modal-open{overflow:hidden}
   .story-slide,.detail-card{transition:none}
   .story-seen .story-slide.active{animation:none}
 }
+
+
+/* RSVP complementario por WhatsApp — V10.5 */
+.whatsapp-rsvp-box{
+  margin-top:16px;
+  padding:14px;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:20px;
+  background:rgba(255,255,255,.055);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.whatsapp-rsvp-box[hidden]{display:none!important}
+.btn-whatsapp{
+  width:100%;
+  min-height:50px;
+  background:rgba(255,255,255,.94);
+  color:var(--plum);
+  box-shadow:0 10px 26px rgba(0,0,0,.10);
+}
+.whatsapp-rsvp-hint{
+  margin:10px 4px 0;
+  color:rgba(255,255,255,.66);
+  font-size:.84rem;
+  line-height:1.5;
+}

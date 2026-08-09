@@ -1,5 +1,5 @@
 // ==========================================================
-// CONFIGURACIÓN PRINCIPAL DE LA INVITACIÓN — V10.4
+// CONFIGURACIÓN PRINCIPAL DE LA INVITACIÓN — V10.5
 // ==========================================================
 window.INVITACION = {
   festejada: "Sofía Mendoza",
@@ -127,6 +127,14 @@ window.INVITACION = {
     confirmacion: "Confirmo",
     rechazo: "No asistiré",
     pedirDatosEnRechazo: true
+  },
+
+  // WhatsApp es un canal complementario al correo.
+  // El número debe ir en formato internacional y solo con dígitos.
+  whatsappRSVP: {
+    activo: true,
+    telefono: "523315209678",
+    encabezado: "RESPUESTA A LA INVITACIÓN"
   },
 
   pie: "YRW Tech · yrw.events@gmail.com · Invitación digital"

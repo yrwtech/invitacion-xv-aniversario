@@ -64,3 +64,19 @@ Validar correo recibido y que incluya `Comentarios:`.
 ## 9. Finale
 - Debe aparecer antes del RSVP.
 - Revisar legibilidad del nombre, fecha y lugar.
+
+
+## 10. RSVP por WhatsApp
+
+Probar tanto en Android como en iPhone:
+
+1. Abrir la invitación, preferentemente desde un enlace recibido por WhatsApp.
+2. Añadir `?reset=1` a la URL para reiniciar el RSVP de prueba.
+3. Completar el formulario y enviarlo.
+4. Comprobar que la respuesta se registre primero por el flujo normal de correo.
+5. Verificar que aparezca **Enviar también por WhatsApp**.
+6. Pulsar el botón.
+7. Confirmar que WhatsApp abra la conversación del organizador con un mensaje prellenado.
+8. Revisar que el mensaje contenga respuesta, nombre, correo, WhatsApp, comentarios, evento y fecha.
+9. Pulsar **Enviar** en WhatsApp.
+10. Probar también la respuesta **No asistiré**.
