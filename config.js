@@ -1,5 +1,5 @@
 // ==========================================================
-// CONFIGURACIÓN PRINCIPAL DE LA INVITACIÓN — V10.3
+// CONFIGURACIÓN PRINCIPAL DE LA INVITACIÓN — V10.4
 // ==========================================================
 window.INVITACION = {
   festejada: "Sofía Mendoza",
@@ -105,7 +105,7 @@ window.INVITACION = {
 
   regalos: {
     activo: true,
-    texto: "Tu presencia es mi mejor regalo. Si deseas tener un detalle conmigo, puedes consultar nuestra mesa de regalos.",
+    texto: "Tu presencia es mi mejor regalo. Si deseas tener un detalle conmigo, puedes consultar mi mesa de regalos.",
     enlace: "https://www.example.com/",
     foto: "./assets/fotos/regalos.jpg"
   },
@@ -117,7 +117,7 @@ window.INVITACION = {
   },
 
   musica: {
-    activa: false,
+    activa: true,
     archivo: "./assets/audio/musica.mp3"
   },
 

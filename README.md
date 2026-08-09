@@ -1,34 +1,113 @@
-# Invitación XV — GitHub Pages
+# Invitación XV — Sofía Mendoza
 
-## Edita principalmente `config.js`
-Ahí cambias:
-- nombre
-- fecha
-- textos
-- enlaces de Maps
-- mesa de regalos
-- fotos
-- música
-- Formspree
-- secciones activas/inactivas
+Invitación digital móvil desarrollada en HTML, CSS y JavaScript puro para publicarse con GitHub Pages.
 
-## Fotos
-Reemplaza los archivos de `assets/fotos/` o usa `.webp` y actualiza las rutas en `config.js`.
+**Versión base documentada:** V10.4
+
+## Estructura principal
+
+- `index.html` — estructura de la invitación.
+- `styles.css` — estilos, animaciones y diseño responsive.
+- `app.js` — interacción, carruseles, calendario, música, RSVP y `localStorage`.
+- `config.js` — datos variables del evento.
+- `google-apps-script-rsvp.gs` — backend de RSVP por correo.
+- `robots.txt` — evita indexación por buscadores.
+- `CHANGELOG.md` — historial de cambios.
+- `docs/` — documentación funcional y técnica.
+
+## Configuración rápida
+
+La mayor parte del contenido editable vive en `config.js`:
+
+- nombre de la quinceañera;
+- fecha y hora;
+- ceremonia y recepción;
+- itinerario multi-fecha;
+- galería;
+- código de vestimenta;
+- mesa de regalos;
+- música;
+- endpoint RSVP;
+- textos finales.
+
+## Fotografías
+
+Las fotografías se cargan desde `assets/fotos/`. La regla del proyecto es que las imágenes sean **fotografía limpia**, sin nombres, fechas, botones, marcos, QR ni textos horneados. Todo texto variable debe superponerse desde HTML/CSS.
+
+Consulta `docs/GUIA_DE_FOTOS.md`.
 
 ## Música
-Coloca `assets/audio/musica.mp3` y cambia:
-```js
-musica: { activa: true, archivo: "./assets/audio/musica.mp3" }
+
+Ruta esperada:
+
+```text
+assets/audio/musica.mp3
 ```
 
-## Formspree
-Pega el endpoint en:
-```js
-formspreeEndpoint: "https://formspree.io/f/XXXXXXXX"
+La V10.4 tiene la música habilitada y trata de iniciarla cuando el usuario toca el sello. El botón flotante permite pausar/reanudar.
+
+Consulta `docs/MUSICA.md`.
+
+## RSVP
+
+El formulario envía:
+
+- respuesta;
+- nombre;
+- correo;
+- WhatsApp;
+- comentarios;
+- evento;
+- fecha.
+
+El backend es Google Apps Script. Debe existir la propiedad de script:
+
+```text
+RSVP_EMAIL_TO
 ```
 
-## Prueba local
-```bash
-python3 -m http.server 8080
+Consulta `docs/RSVP_GOOGLE_APPS_SCRIPT.md`.
+
+## Reiniciar pruebas
+
+Para borrar únicamente el RSVP almacenado localmente:
+
+```text
+?reset=1
 ```
-Luego abre http://localhost:8080
+
+Ejemplo:
+
+```text
+https://usuario.github.io/repositorio/?reset=1
+```
+
+## Calendario
+
+- Android: abre un evento prellenado de Google Calendar para evitar el diálogo de descarga del `.ics`.
+- iPhone/iPad y otros navegadores: genera un archivo `.ics`.
+
+## Publicación recomendada
+
+Reemplaza en un mismo commit:
+
+```text
+index.html
+app.js
+styles.css
+config.js
+```
+
+Si cambias el Apps Script, actualiza además la implementación del Web App.
+
+## Documentación
+
+Consulta:
+
+- `CHANGELOG.md`
+- `docs/ARQUITECTURA.md`
+- `docs/GUIA_DE_PRUEBAS.md`
+- `docs/GUIA_DE_FOTOS.md`
+- `docs/RSVP_GOOGLE_APPS_SCRIPT.md`
+- `docs/MUSICA.md`
+- `docs/ASSETS.md`

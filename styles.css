@@ -103,29 +103,29 @@ p{line-height:1.72}
 .countdown-emotion{margin:14px auto 0;color:rgba(255,255,255,.48);font:italic 500 1rem Georgia,serif}
 
 /* Historia */
-.story-section{overflow:hidden}
+.story-section{overflow:hidden;padding-top:64px;padding-bottom:54px}
 .story-immersive{display:grid;gap:38px;align-items:center}
 .story-media{position:relative;overflow:hidden;clip-path:inset(11% 7% 11% 7% round 42px);box-shadow:0 28px 70px rgba(54,31,48,.18);background:#eadbd3}
 .story-photo{width:100%;aspect-ratio:3/4;object-fit:cover;transform:scale(1.08);will-change:transform}
 .story-glow{position:absolute;inset:auto -15% -25% -15%;height:42%;background:radial-gradient(circle,rgba(228,195,132,.30),transparent 65%)}
 .story-copy{position:relative;will-change:transform,opacity}
 .story-copy h2,.story-copy p{max-width:620px}
-.story-signature{margin-top:26px;font:italic 500 1.7rem Georgia,serif;color:var(--wine);opacity:.65}
+.story-signature{margin-top:20px;font:italic 500 1.38rem Georgia,serif;color:var(--wine);opacity:.72}
 
 /* Locaciones */
-.locations-section{overflow:hidden}
-.locations-heading{margin-bottom:28px}
+.locations-section{overflow:hidden;padding-top:58px}
+.locations-heading{margin-bottom:22px}
 .locations-cinema{display:grid;gap:38px}
 .place-card{position:relative;min-height:min(78svh,720px);border-radius:32px;overflow:hidden;background:#241329;box-shadow:0 28px 65px rgba(59,35,51,.16)}
 .place-media{position:absolute;inset:0;overflow:hidden}
 .place-photo{width:100%;height:112%;object-fit:cover;transform:scale(1.12);will-change:transform}
 .place-photo-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,8,18,.03) 20%,rgba(16,8,18,.16) 48%,rgba(16,8,18,.88) 100%)}
-.place-card-body{position:absolute;left:16px;right:16px;bottom:16px;z-index:2;padding:24px;border:1px solid rgba(255,255,255,.16);border-radius:25px;background:rgba(25,11,29,.58);backdrop-filter:blur(16px);color:white;will-change:transform}
+.place-card-body{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;padding:19px 20px;border:1px solid rgba(255,255,255,.20);border-radius:23px;background:linear-gradient(180deg,rgba(25,11,29,.24),rgba(25,11,29,.38));backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);color:white;box-shadow:0 12px 34px rgba(0,0,0,.14);will-change:transform}
 .place-index{position:absolute;right:20px;top:14px;font:italic 500 3.8rem/.9 Georgia,serif;color:rgba(228,195,132,.24)}
 .place-tag{font-size:.68rem;color:var(--gold);font-weight:900;text-transform:uppercase;letter-spacing:.16em}
-.place-card h3{font-size:clamp(2rem,8vw,3.1rem);line-height:.98;margin:10px 55px 10px 0}
-.place-card p{color:rgba(255,255,255,.72);margin:0 0 17px}
-.place-link{background:rgba(255,255,255,.92);color:var(--plum);min-height:48px}
+.place-card h3{font-size:clamp(1.9rem,7.2vw,2.85rem);line-height:.98;margin:8px 55px 7px 0}
+.place-card p{color:rgba(255,255,255,.78);margin:0 0 13px;line-height:1.5}
+.place-link{background:rgba(255,255,255,.86);color:var(--plum);min-height:44px}
 
 /* Timeline */
 .timeline-section{background:radial-gradient(circle at 80% 12%,rgba(124,58,98,.22),transparent 30%),linear-gradient(180deg,#170b1b,#261027)}

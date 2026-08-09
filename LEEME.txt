@@ -1,21 +1,55 @@
-ACTUALIZACIÓN PARA IMÁGENES JPG
+INVITACIÓN XV — V10.4
 
-Sustituye únicamente config.js en la raíz del repositorio.
+REEMPLAZA EN LA RAÍZ DE GITHUB:
+- index.html
+- app.js
+- styles.css
+- config.js
 
-Después sube estas imágenes a:
-assets/fotos/
+CAMBIOS DE ESTA VERSIÓN:
+1. CALENDARIO
+   - Android abre un evento prellenado en Google Calendar y evita el diálogo de descarga del .ics.
+   - iPhone/iPad y otros navegadores conservan el archivo .ics.
+   - El botón ahora dice "Agregar al calendario".
 
-Con estos nombres exactos:
-- portada.jpg
-- historia.jpg
-- galeria-01.jpg
-- galeria-02.jpg
-- galeria-03.jpg
+2. MI HISTORIA / DÓNDE Y CUÁNDO
+   - Se redujo espacio vertical ocioso.
+   - Se reemplazó "XV ✦" por una firma dinámica: "Sofía · XV años".
 
-Todas recomendadas en:
-1200 x 1600 px
-proporción vertical 3:4
-formato JPG
+3. TARJETAS DE FOROS
+   - Fondo glass mucho más transparente.
+   - Menor blur, menor padding y mejor aprovechamiento de la fotografía.
 
-No necesitas modificar styles.css, index.html ni app.js.
-El CSS 3:4 que ya tienes funciona igual con JPG.
+4. MÚSICA
+   - Queda habilitada.
+   - Ruta esperada: assets/audio/musica.mp3
+   - El sistema intenta iniciar la pista cuando el usuario toca el sello.
+   - El botón flotante permite pausar/reanudar.
+   - Volumen inicial: 72%.
+
+5. MESA DE REGALOS
+   - Se cambia "nuestra mesa de regalos" por "mi mesa de regalos".
+
+SE CONSERVA:
+- Itinerario multi-fecha V10.3.
+- RSVP y comentarios enviados por correo.
+- ?reset=1 para reiniciar pruebas.
+- Finale antes de RSVP.
+- Carrusel compacto.
+
+ARCHIVO DE MÚSICA:
+Crea, si aún no existe:
+assets/audio/musica.mp3
+
+Recomendado:
+- MP3
+- 128 a 192 kbps
+- estéreo
+- inicio y final suaves para que el loop no resulte brusco.
+
+DOCUMENTACIÓN:
+- README.md
+- CHANGELOG.md
+- docs/
+- google-apps-script-rsvp.gs
+- VERSION.txt

@@ -32,6 +32,7 @@ function render(){
   setText("#dateText",C.fechaTexto);
   setText("#storyTitle",C.historia.titulo);
   setText("#storyText",C.historia.texto);
+  setText("#storySignature",`${first} · XV años`);
   setText("#dressCodeText",C.dressCode.texto);
   setText("#giftsText",C.regalos.texto);
   setText("#finalInitial",C.inicial);
@@ -445,6 +446,25 @@ function initReveal(){
 }
 
 function openInvitation(){
+  // El toque del sello cuenta como interacción del usuario, por lo que
+  // es el mejor momento para intentar iniciar la pista en móviles.
+  if(C.musica?.activa){
+    const audio=$("#music");
+    const musicButton=$("#musicButton");
+    if(audio){
+      audio.volume=.72;
+      const playPromise=audio.play();
+      if(playPromise&&typeof playPromise.then==="function"){
+        playPromise.then(()=>{
+          if(musicButton)musicButton.textContent="Ⅱ";
+        }).catch(()=>{
+          // Si el navegador aún la bloquea, el botón flotante queda disponible.
+          if(musicButton)musicButton.textContent="♫";
+        });
+      }
+    }
+  }
+
   $("#intro").classList.add("opening");
   setTimeout(()=>{
     $("#intro").classList.add("closed");
@@ -519,13 +539,24 @@ function initCountdown(){
 
 function initMusic(){
   if(!C.musica?.activa)return;
-  const a=$("#music"),b=$("#musicButton");let p=false;
+  const a=$("#music"),b=$("#musicButton");
+  a.volume=.72;
+
+  const paint=()=>{b.textContent=a.paused?"♫":"Ⅱ"};
+  a.addEventListener("play",paint);
+  a.addEventListener("pause",paint);
+
   b.addEventListener("click",async()=>{
     try{
-      if(p){a.pause();p=false;b.textContent="♫"}
-      else{await a.play();p=true;b.textContent="Ⅱ"}
-    }catch(e){console.warn(e)}
+      if(a.paused)await a.play();
+      else a.pause();
+      paint();
+    }catch(e){
+      console.warn("No se pudo reproducir la música:",e);
+      paint();
+    }
   });
+  paint();
 }
 
 let pendingResponse="Confirmo";
@@ -691,7 +722,34 @@ function initRSVP(){
 
 function initActions(){
   $("#calendarButton").addEventListener("click",()=>{
-    const start=new Date(C.fechaISO),end=new Date(start.getTime()+6*60*60*1000);
+    const start=new Date(C.fechaISO);
+    const end=new Date(start.getTime()+6*60*60*1000);
+    const isAndroid=/Android/i.test(navigator.userAgent);
+
+    // En Android evitamos descargar .ics porque muchos navegadores
+    // muestran un diálogo de descarga en vez de abrir el calendario.
+    if(isAndroid){
+      const fmtGoogle=d=>d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}Z$/,"Z");
+      const title=`XV ${C.festejada}`;
+      const location=C.ubicaciones?.[1]?.direccion||C.ubicaciones?.[0]?.direccion||"";
+      const details=[
+        C.portada?.mensaje||"",
+        "",
+        ...((C.ubicaciones||[]).map(u=>`${u.tipo}: ${u.hora} · ${u.nombre}`))
+      ].join("\n");
+
+      const params=new URLSearchParams({
+        action:"TEMPLATE",
+        text:title,
+        dates:`${fmtGoogle(start)}/${fmtGoogle(end)}`,
+        details,
+        location
+      });
+      window.open(`https://calendar.google.com/calendar/render?${params.toString()}`,"_blank","noopener");
+      return;
+    }
+
+    // En iPhone/iPad y otros navegadores conservamos el archivo .ics.
     const fmt=d=>d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}Z$/,"Z");
     const ics=`BEGIN:VCALENDAR
 VERSION:2.0
@@ -708,8 +766,11 @@ END:VEVENT
 END:VCALENDAR`;
     const blob=new Blob([ics],{type:"text/calendar;charset=utf-8"});
     const url=URL.createObjectURL(blob),a=document.createElement("a");
-    a.href=url;a.download=`XV-${C.festejada.replace(/\s+/g,"-")}.ics`;
-    document.body.appendChild(a);a.click();a.remove();
+    a.href=url;
+    a.download=`XV-${C.festejada.replace(/\s+/g,"-")}.ics`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
     setTimeout(()=>URL.revokeObjectURL(url),1000);
   });
 
