@@ -3,10 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <meta name="theme-color" content="#211027">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <title>Invitación XV</title>
-  <link rel="stylesheet" href="./styles.css?v=10.6">
+  <link rel="stylesheet" href="./styles.css?v=yrwtech-01">
 </head>
 <body class="locked">
   <div id="intro" class="intro">
@@ -234,17 +237,24 @@
         <div class="final-mark" id="finalInitial">S</div>
         <div class="eyebrow">RSVP</div>
         <h2>¿Nos acompañas?</h2>
+        <div id="eventContactBox" class="event-contact-box" hidden>
+          <span>¿Tienes alguna duda sobre el evento?</span>
+          <a id="eventContactEmail" href="#"></a>
+        </div>
         <p id="rsvpStatus" class="rsvp-status">Elige una respuesta.</p>
         <div class="rsvp-buttons">
           <button class="btn btn-confirm" data-response="Confirmo">✓ Confirmo</button>
           <button class="btn btn-light" data-response="No asistiré">No asistiré</button>
         </div>
         <div id="whatsappRSVPBox" class="whatsapp-rsvp-box" hidden>
-          <button id="whatsappRSVPButton" class="btn btn-whatsapp" type="button">
-            Enviar también por WhatsApp
-          </button>
+          <a id="whatsappRSVPButton"
+             class="btn btn-whatsapp"
+             href="#"
+             rel="noopener">
+            Enviar mi respuesta por WhatsApp
+          </a>
           <p class="whatsapp-rsvp-hint">
-            Tu respuesta ya fue registrada. Si deseas, puedes enviarla también por WhatsApp al organizador.
+            Se abrirá una conversación privada con el contacto del evento.
           </p>
         </div>
         <button id="exitButton" class="btn btn-exit" type="button" hidden>Salir</button>
@@ -328,6 +338,24 @@
           Enviar confirmación
         </button>
 
+        <div id="whatsappModalBox" class="whatsapp-modal-box" hidden>
+          <p class="whatsapp-modal-success">✓ Tu respuesta ya fue registrada por correo.</p>
+          <a id="whatsappModalLink"
+             class="btn btn-whatsapp"
+             href="#"
+             rel="noopener">
+            Enviar mi respuesta por WhatsApp
+          </a>
+          <p class="whatsapp-modal-note">
+            Se abrirá una conversación privada con el organizador. Solo falta tocar Enviar en WhatsApp.
+          </p>
+          <button id="continueInvitationButton"
+                  class="btn btn-modal-continue"
+                  type="button">
+            Continuar en la invitación
+          </button>
+        </div>
+
         <p class="privacy-note">
           Los datos se envían por correo al destinatario configurado. Este prototipo no usa
           una base de datos ni Google Sheets.
@@ -336,7 +364,7 @@
     </div>
   </div>
 
-<script src="./config.js?v=10.6"></script>
-<script src="./app.js?v=10.6"></script>
+<script src="./config.js?v=yrwtech-01"></script>
+<script src="./app.js?v=yrwtech-01"></script>
 </body>
 </html>

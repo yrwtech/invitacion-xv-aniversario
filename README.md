@@ -2,7 +2,7 @@
 
 Invitación digital móvil desarrollada en HTML, CSS y JavaScript puro para publicarse con GitHub Pages.
 
-**Versión base documentada:** V10.6
+**Paquete base documentado:** YRWTECH-01
 
 ## Estructura principal
 
@@ -145,3 +145,47 @@ La V10.6 guarda además los datos necesarios para reconstruir el mensaje de What
 También conserva compatibilidad con respuestas registradas en versiones anteriores: si existe una respuesta antigua sin datos personales almacenados, se muestra un mensaje resumido de WhatsApp en vez de ocultar el botón.
 
 `?reset=1` elimina tanto la respuesta como los datos locales del RSVP.
+
+
+### WhatsApp V10.7
+
+La acción de WhatsApp ya no depende únicamente de un botón dinámico debajo del RSVP. Después de enviar el formulario por correo, el mismo modal muestra inmediatamente **Enviar mi respuesta por WhatsApp**.
+
+El enlace es un `<a href="https://wa.me/...">` real, no una redirección JavaScript. También se conserva una copia del botón en la tarjeta RSVP para respuestas ya registradas.
+
+
+## YRWTECH-01 — infraestructura YRW
+
+Repositorio objetivo:
+
+```text
+yrwtech/invitacion-xv-aniversario
+```
+
+GitHub Pages:
+
+```text
+https://yrwtech.github.io/invitacion-xv-aniversario/
+```
+
+Backend definitivo:
+
+```text
+https://script.google.com/macros/s/AKfycbzdIt8Nv1Uk66RlXbT28s9N7BF2Rsvg-K_FhXjVVcWEYkfgEDH6V6-l5eb6RQVOE8xj/exec
+```
+
+Los datos variables del evento ya no se escriben en GitHub.
+
+En Google Apps Script → Propiedades del script:
+
+```text
+EVENT_CONTACT_EMAIL = correo del responsable del evento
+EVENT_WHATSAPP_TO    = WhatsApp internacional del responsable, solo dígitos
+```
+
+`EVENT_CONTACT_EMAIL` cumple dos funciones:
+- recibe los RSVP;
+- aparece públicamente como contacto para dudas del evento.
+
+El footer de YRW Tech es independiente y permanece como contacto comercial:
+`yrw.events@gmail.com`.

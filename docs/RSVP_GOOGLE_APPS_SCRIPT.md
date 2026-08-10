@@ -9,7 +9,7 @@ Usa `google-apps-script-rsvp.gs`.
 En **Configuración del proyecto → Propiedades de script**:
 
 ```text
-RSVP_EMAIL_TO = correo_destino
+EVENT_CONTACT_EMAIL = correo_destino
 ```
 
 ## Despliegue
@@ -56,3 +56,25 @@ Después probar desde la invitación con `?reset=1`.
 - no se usa base de datos;
 - no se usa Google Sheets;
 - el correo del invitado se utiliza como `replyTo`.
+
+
+## Backend definitivo YRWTECH-01
+
+Cuenta propietaria/ejecutora:
+
+```text
+yrw.events@gmail.com
+```
+
+Endpoint:
+
+```text
+https://script.google.com/macros/s/AKfycbzdIt8Nv1Uk66RlXbT28s9N7BF2Rsvg-K_FhXjVVcWEYkfgEDH6V6-l5eb6RQVOE8xj/exec
+```
+
+Script Properties:
+
+```text
+EVENT_CONTACT_EMAIL
+EVENT_WHATSAPP_TO
+```

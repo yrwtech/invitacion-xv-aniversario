@@ -1,4 +1,4 @@
-INVITACIÓN XV — V10.6
+INVITACIÓN XV — YRWTECH-01
 
 REEMPLAZA EN LA RAÍZ DE GITHUB:
 - index.html
@@ -69,3 +69,26 @@ CORRECCIÓN V10.6:
 - Se guardan localmente los datos necesarios para el mensaje.
 - Respuestas antiguas muestran un mensaje resumido en WhatsApp.
 - Para probar desde cero: ?reset=1
+
+
+CORRECCIÓN WHATSAPP V10.7:
+- WhatsApp aparece dentro del modal después del correo.
+- Se usa un enlace directo wa.me, no navegación JavaScript.
+- El modal ya no se cierra automáticamente.
+- Para probar evitando caché: ?reset=1&fresh=107
+
+
+MIGRACIÓN YRW — YRWTECH-01
+
+Repositorio:
+yrwtech/invitacion-xv-aniversario
+
+Backend:
+https://script.google.com/macros/s/AKfycbzdIt8Nv1Uk66RlXbT28s9N7BF2Rsvg-K_FhXjVVcWEYkfgEDH6V6-l5eb6RQVOE8xj/exec
+
+Configurar únicamente en Apps Script Properties:
+EVENT_CONTACT_EMAIL
+EVENT_WHATSAPP_TO
+
+No escribir el teléfono operativo del evento en config.js.
+El correo yrw.events@gmail.com del footer es la firma/contacto comercial de YRW Tech.

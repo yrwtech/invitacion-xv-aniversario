@@ -86,3 +86,32 @@ La segunda clave guarda localmente los datos necesarios para reconstruir el mens
 Las respuestas creadas antes de V10.6 pueden no tener ese segundo objeto. En ese caso la invitación muestra igualmente el botón de WhatsApp y prepara un mensaje resumido con evento, fecha y respuesta.
 
 Para una prueba limpia utiliza `?reset=1`.
+
+
+## Corrección V10.7
+
+La V10.7 cambia el flujo visual:
+
+1. El usuario envía el formulario.
+2. El correo se procesa como antes.
+3. Sin cerrar el modal, aparece inmediatamente **Enviar mi respuesta por WhatsApp**.
+4. El enlace es un `href` directo a `wa.me`.
+5. El usuario puede abrir WhatsApp o pulsar **Continuar en la invitación**.
+6. El botón queda disponible también en la tarjeta RSVP.
+
+Este enfoque evita depender de un cambio de visibilidad que ocurra detrás del modal y reduce problemas de navegación programática en navegadores internos.
+
+
+## YRWTECH-01
+
+El número del organizador ya no se escribe en `config.js`.
+
+Se obtiene desde:
+
+```text
+EVENT_WHATSAPP_TO
+```
+
+El frontend lo recibe en tiempo de ejecución desde Apps Script y construye un enlace directo `https://wa.me/...`.
+
+El botón aparece dentro del modal después de enviar el RSVP y también permanece disponible en la tarjeta RSVP.

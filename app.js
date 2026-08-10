@@ -8,6 +8,77 @@ const lerp=(a,b,t)=>a+(b-a)*t;
 const ease=t=>1-Math.pow(1-clamp(t),3);
 const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+const EVENT_RUNTIME={
+  eventContactEmail:"",
+  eventWhatsappTo:"",
+  loaded:false
+};
+
+window.__setYRWEventConfig=function(payload={}){
+  EVENT_RUNTIME.eventContactEmail=String(payload.eventContactEmail||"").trim();
+  EVENT_RUNTIME.eventWhatsappTo=String(payload.eventWhatsappTo||"").replace(/\D/g,"");
+  EVENT_RUNTIME.loaded=true;
+  renderRuntimeContact();
+};
+
+function renderRuntimeContact(){
+  const box=$("#eventContactBox");
+  const link=$("#eventContactEmail");
+  const email=EVENT_RUNTIME.eventContactEmail;
+
+  if(box&&link&&email){
+    link.textContent=email;
+    link.href=`mailto:${email}`;
+    box.hidden=false;
+  }else if(box){
+    box.hidden=true;
+  }
+
+  if(typeof getStoredRSVP==="function"&&typeof configureWhatsAppRSVP==="function"){
+    const stored=getStoredRSVP();
+    if(stored==="Confirmo"||stored==="No asistiré"){
+      configureWhatsAppRSVP(
+        typeof getStoredRSVPData==="function" ? getStoredRSVPData() : null
+      );
+    }
+  }
+}
+
+function initRuntimeConfig(){
+  return new Promise(resolve=>{
+    if(!C.rsvpEndpoint){
+      EVENT_RUNTIME.loaded=true;
+      renderRuntimeContact();
+      resolve(false);
+      return;
+    }
+
+    const script=document.createElement("script");
+    const sep=C.rsvpEndpoint.includes("?")?"&":"?";
+    script.src=`${C.rsvpEndpoint}${sep}action=public-config&v=${Date.now()}`;
+    script.async=true;
+
+    let done=false;
+    const finish=ok=>{
+      if(done)return;
+      done=true;
+      clearTimeout(timer);
+      script.onload=null;
+      script.onerror=null;
+      if(!EVENT_RUNTIME.loaded)EVENT_RUNTIME.loaded=true;
+      renderRuntimeContact();
+      resolve(ok);
+    };
+
+    script.onload=()=>finish(true);
+    script.onerror=()=>finish(false);
+
+    const timer=setTimeout(()=>finish(false),5000);
+    document.head.appendChild(script);
+  });
+}
+
+
 const iconSVG=name=>{
   const icons={
     iglesia:`<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6v8M20 10h8M11 40h26M14 40V21l10-7 10 7v19M20 40V29h8v11M10 21h28"/></svg>`,
@@ -133,6 +204,7 @@ function render(){
   if(C.regalos?.activo)$("#giftsLink").href=C.regalos.enlace; else hide("#giftsCard");
 
   if(C.musica?.activa)$("#music").src=C.musica.archivo; else hide("#musicButton");
+  renderRuntimeContact();
 }
 
 function setGalleryText(index){
@@ -600,7 +672,8 @@ function storeRSVP(response,data=null){
 
 function buildWhatsAppRSVP(data={}){
   const w=C.whatsappRSVP;
-  if(!w?.activo||!w.telefono)return null;
+  const telefono=String(EVENT_RUNTIME.eventWhatsappTo||"").replace(/\D/g,"");
+  if(!w?.activo||!telefono)return null;
 
   const respuesta=data.respuesta||getStoredRSVP()||"";
   if(!respuesta)return null;
@@ -626,38 +699,32 @@ function buildWhatsAppRSVP(data={}){
     texto.push("","💬 Comentarios:",data.comentarios);
   }
 
-  const telefono=String(w.telefono).replace(/\D/g,"");
-  return `https://wa.me/${telefono}?text=${encodeURIComponent(texto.join("\n"))}`;
+  return `https://wa.me/${telefono}?text=${encodeURIComponent(texto.join("\\n"))}`;
 }
 
 function configureWhatsAppRSVP(data=null){
   const box=$("#whatsappRSVPBox");
-  const button=$("#whatsappRSVPButton");
-  const hint=box?.querySelector(".whatsapp-rsvp-hint");
-  if(!box||!button)return;
+  const cardLink=$("#whatsappRSVPButton");
+  const modalBox=$("#whatsappModalBox");
+  const modalLink=$("#whatsappModalLink");
 
   const storedData=getStoredRSVPData();
   const payload=data||storedData||{respuesta:getStoredRSVP()};
   const url=buildWhatsAppRSVP(payload);
 
   if(!url){
-    box.hidden=true;
-    button.onclick=null;
-    return;
+    if(box)box.hidden=true;
+    if(modalBox)modalBox.hidden=true;
+    if(cardLink)cardLink.removeAttribute("href");
+    if(modalLink)modalLink.removeAttribute("href");
+    return null;
   }
 
-  box.hidden=false;
+  if(cardLink)cardLink.href=url;
+  if(modalLink)modalLink.href=url;
+  if(box)box.hidden=false;
 
-  if(hint){
-    hint.textContent=storedData||data
-      ?"Tu respuesta ya fue registrada. Si deseas, puedes enviarla también por WhatsApp al organizador."
-      :"Tu respuesta ya estaba registrada. Puedes enviar también por WhatsApp un resumen de tu confirmación.";
-  }
-
-  button.onclick=()=>{
-    // Enlace universal compatible con Android, iOS y escritorio.
-    window.location.href=url;
-  };
+  return url;
 }
 
 function applyCompletedRSVP(response,shouldStore=true,data=null){
@@ -683,10 +750,14 @@ function applyCompletedRSVP(response,shouldStore=true,data=null){
 function openRSVPModal(response){
   pendingResponse=response;
   const whatsappBox=$("#whatsappRSVPBox");
+  const whatsappModalBox=$("#whatsappModalBox");
   if(whatsappBox)whatsappBox.hidden=true;
+  if(whatsappModalBox)whatsappModalBox.hidden=true;
   $("#rsvpResponse").value=response;
   $("#rsvpModalTitle").textContent=response==="Confirmo"?"Confirma tus datos":"Datos de contacto";
   $("#submitRSVP").textContent=response==="Confirmo"?"Enviar confirmación":"Enviar respuesta";
+  $("#submitRSVP").hidden=false;
+  $("#submitRSVP").disabled=false;
   $("#formStatus").textContent="";
   $("#rsvpModal").classList.add("open");
   $("#rsvpModal").setAttribute("aria-hidden","false");
@@ -740,19 +811,26 @@ async function submitRSVPForm(e){
     });
 
     status.textContent="¡Gracias! Tu respuesta fue enviada.";
-    applyCompletedRSVP(pendingResponse,true,{
+    const rsvpData={
       nombre,
       correo,
       whatsapp,
       comentarios
-    });
+    };
+    applyCompletedRSVP(pendingResponse,true,rsvpData);
 
-    setTimeout(()=>{
-      closeRSVPModal();
-      $("#rsvpForm").reset();
-      submit.disabled=false;
-      submit.textContent=pendingResponse==="Confirmo"?"Enviar confirmación":"Enviar respuesta";
-    },1200);
+    // V10.7: mostramos la acción de WhatsApp dentro del mismo modal,
+    // inmediatamente después del envío por correo. Así el usuario no
+    // depende de descubrir un botón debajo del modal o tras un auto-cierre.
+    const whatsappURL=configureWhatsAppRSVP({
+      ...rsvpData,
+      respuesta:pendingResponse
+    });
+    const whatsappModalBox=$("#whatsappModalBox");
+    if(whatsappURL&&whatsappModalBox)whatsappModalBox.hidden=false;
+
+    submit.hidden=true;
+    submit.disabled=false;
   }catch(err){
     console.error(err);
     status.textContent="No pudimos enviar tus datos. Intenta nuevamente.";
@@ -811,6 +889,10 @@ function initRSVP(){
   $$("[data-close-modal]").forEach(el=>el.addEventListener("click",closeRSVPModal));
   $("#rsvpForm").addEventListener("submit",submitRSVPForm);
   $("#exitButton").addEventListener("click",exitInvitation);
+  $("#continueInvitationButton")?.addEventListener("click",()=>{
+    closeRSVPModal();
+    $("#rsvpForm").reset();
+  });
   document.addEventListener("keydown",e=>{if(e.key==="Escape")closeRSVPModal()});
 }
 
@@ -878,16 +960,22 @@ END:VCALENDAR`;
   });
 }
 
-render();
-initTestReset();
-initIntro();
-initReveal();
-initScrollCinema();
-initTimeline();
-initGalleryStory();
-initDetailDeck();
-initProgress();
-initCountdown();
-initMusic();
-initRSVP();
-initActions();
+async function bootstrap(){
+  render();
+  initTestReset();
+  await initRuntimeConfig();
+
+  initIntro();
+  initReveal();
+  initScrollCinema();
+  initTimeline();
+  initGalleryStory();
+  initDetailDeck();
+  initProgress();
+  initCountdown();
+  initMusic();
+  initRSVP();
+  initActions();
+}
+
+bootstrap();

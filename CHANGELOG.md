@@ -1,5 +1,27 @@
 # Changelog
 
+## YRWTECH-01
+- Migración del repositorio a `yrwtech/invitacion-xv-aniversario`.
+- Nuevo backend Apps Script creado y autorizado bajo `yrw.events@gmail.com`.
+- Nuevo endpoint Web App definitivo.
+- `EVENT_CONTACT_EMAIL` y `EVENT_WHATSAPP_TO` pasan a Script Properties.
+- Eliminado el número de WhatsApp literal del frontend.
+- Contacto del evento separado visualmente del contacto comercial YRW Tech.
+- WhatsApp usa enlace directo `wa.me` y aparece dentro del modal tras enviar RSVP.
+- El frontend obtiene el contacto del evento en tiempo de ejecución mediante `action=public-config`.
+- Cache-busting actualizado a `yrwtech-01`.
+
+
+## V10.7
+- Corrección estructural del RSVP por WhatsApp.
+- El enlace de WhatsApp aparece inmediatamente dentro del modal después del envío por correo.
+- Se eliminó la dependencia de `window.location.href` disparado por JavaScript.
+- WhatsApp usa ahora enlaces `<a href="https://wa.me/...">` directos.
+- Se conserva además el botón en la tarjeta RSVP después de cerrar el modal o recargar.
+- Se elimina el auto-cierre del modal después de 1.2 segundos para que el usuario pueda elegir conscientemente WhatsApp o continuar.
+- Añadidas pistas de no-cache y versiones `?v=10.7` de CSS/JS/config para reducir problemas de caché en navegadores móviles.
+
+
 ## V10.6
 - Corregido el caso en que “Enviar también por WhatsApp” no aparecía si el navegador ya tenía una respuesta RSVP guardada de una versión anterior.
 - Se guarda ahora un segundo objeto de `localStorage` con nombre, correo, WhatsApp y comentarios para reconstruir el mensaje después de recargar.

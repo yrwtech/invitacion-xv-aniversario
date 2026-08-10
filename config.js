@@ -1,5 +1,5 @@
 // ==========================================================
-// CONFIGURACIÓN PRINCIPAL DE LA INVITACIÓN — V10.6
+// CONFIGURACIÓN PRINCIPAL DE LA INVITACIÓN — YRWTECH-01
 // ==========================================================
 window.INVITACION = {
   festejada: "Sofía Mendoza",
@@ -121,7 +121,7 @@ window.INVITACION = {
     archivo: "./assets/audio/musica.mp3"
   },
 
-  rsvpEndpoint: "https://script.google.com/macros/s/AKfycbzZvdSNEZBBjl3Yf9xvaoWla_Z9mRcxk25MvUcfuMdVxdo5i_ZaPYTL1tL9brdyBT-n/exec",
+  rsvpEndpoint: "https://script.google.com/macros/s/AKfycbzdIt8Nv1Uk66RlXbT28s9N7BF2Rsvg-K_FhXjVVcWEYkfgEDH6V6-l5eb6RQVOE8xj/exec",
 
   rsvp: {
     confirmacion: "Confirmo",
@@ -131,11 +131,10 @@ window.INVITACION = {
 
   // WhatsApp es un canal complementario al correo.
   // El número debe ir en formato internacional y solo con dígitos.
-  whatsappRSVP: {
+    whatsappRSVP: {
     activo: true,
-    telefono: "523315209678",
     encabezado: "RESPUESTA A LA INVITACIÓN"
   },
 
-  pie: "YRW Tech · yrw.events@gmail.com · Invitación digital"
+  pie: "Invitación digital creada por YRW Tech · ¿Quieres una invitación como esta? · yrw.events@gmail.com"
 };

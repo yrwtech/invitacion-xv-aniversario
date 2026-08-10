@@ -90,3 +90,34 @@ Después de confirmar:
 3. Verificar que el botón siga apareciendo.
 4. Abrir WhatsApp y comprobar que conserva los datos del RSVP.
 5. Probar `?reset=1` y confirmar que desaparece el estado anterior.
+
+
+## Prueba específica V10.7
+
+Usar una URL fresca, por ejemplo:
+
+```text
+?reset=1&fresh=107
+```
+
+Después de enviar el RSVP:
+- el modal NO debe cerrarse automáticamente;
+- debe verse inmediatamente “✓ Tu respuesta ya fue registrada por correo”;
+- debe aparecer “Enviar mi respuesta por WhatsApp”;
+- al tocarlo debe abrirse un chat privado al organizador con el mensaje prellenado;
+- “Continuar en la invitación” debe cerrar el modal;
+- el botón de WhatsApp debe seguir visible en la tarjeta RSVP.
+
+
+## Prueba de aceptación — YRWTECH-01
+
+1. Confirmar que GitHub Pages abre desde `yrwtech.github.io`.
+2. Abrir con `?reset=1&fresh=yrwtech01`.
+3. Verificar que aparezca el correo bajo “¿Tienes alguna duda sobre el evento?”.
+4. Enviar un RSVP completo.
+5. Confirmar recepción en `EVENT_CONTACT_EMAIL`.
+6. Confirmar que el remitente del servicio sea YRW Events bajo `yrw.events@gmail.com`.
+7. Verificar que el modal muestre “Enviar mi respuesta por WhatsApp”.
+8. Abrir WhatsApp y confirmar que el destino corresponde a `EVENT_WHATSAPP_TO`.
+9. Cerrar/continuar y verificar que el botón de WhatsApp siga disponible en la tarjeta RSVP.
+10. Recargar y comprobar persistencia.

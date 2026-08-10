@@ -102,3 +102,27 @@ El invitado pulsa Enviar
 Se usa `https://wa.me/` y no esquemas específicos como `whatsapp://` o `intent://`, para mejorar compatibilidad entre Android, iOS, escritorio y navegadores internos.
 
 El navegador solo puede preparar y abrir el mensaje; WhatsApp requiere la acción final del usuario para enviarlo.
+
+
+## Configuración runtime — YRWTECH-01
+
+GitHub Pages solicita la configuración pública al Web App:
+
+```text
+https://script.google.com/macros/s/AKfycbzdIt8Nv1Uk66RlXbT28s9N7BF2Rsvg-K_FhXjVVcWEYkfgEDH6V6-l5eb6RQVOE8xj/exec?action=public-config
+```
+
+Apps Script devuelve JavaScript que invoca:
+
+```js
+window.__setYRWEventConfig(...)
+```
+
+La respuesta incluye únicamente:
+
+```text
+eventContactEmail
+eventWhatsappTo
+```
+
+El correo destinatario de RSVP se toma de la misma propiedad `EVENT_CONTACT_EMAIL`, evitando divergencias entre contacto visible y destinatario real.
