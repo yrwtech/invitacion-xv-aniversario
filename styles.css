@@ -60,9 +60,9 @@ p{line-height:1.72}
 .seal-touch-area{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
 .seal-ring{position:absolute;width:58%;aspect-ratio:1;border-radius:50%;border:1.5px solid rgba(255,238,197,.88);box-shadow:0 0 0 1px rgba(124,58,98,.14),0 0 22px rgba(228,195,132,.34);animation:sealPulse 1.9s cubic-bezier(.2,.72,.2,1) infinite}
 .seal-ring-delay{animation-delay:.72s}
-.seal-instruction{position:absolute;left:50%;bottom:calc(100% - 2px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:1px;min-width:112px;color:white;text-shadow:0 2px 12px rgba(0,0,0,.85);pointer-events:none;opacity:0;animation:introText .8s ease 1s forwards}
+.seal-instruction{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0;min-width:220px;color:white;text-shadow:0 2px 12px rgba(0,0,0,.85);pointer-events:none;opacity:0;animation:introText .8s ease 1s forwards}
 .seal-arrow{font-size:1.25rem;line-height:1;color:#ffe7ae;animation:sealArrow 1.25s ease-in-out infinite}
-.seal-instruction strong{padding:5px 9px;border-radius:999px;background:rgba(20,8,23,.48);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);font-size:.66rem;line-height:1;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+.seal-instruction strong{padding:8px 14px;border-radius:18px;background:rgba(20,8,23,.24);border:1px solid rgba(255,255,255,.20);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:.72rem;line-height:1.35;letter-spacing:.02em;text-transform:none;white-space:normal;max-width:235px;text-align:center}
 @keyframes sealPulse{0%{opacity:.92;transform:scale(.82)}62%{opacity:.08;transform:scale(1.38)}100%{opacity:0;transform:scale(1.48)}}
 @keyframes sealArrow{0%,100%{transform:translateY(-2px);opacity:.72}50%{transform:translateY(4px);opacity:1}}
 .intro.opening .intro-photo{filter:brightness(1.08)}
@@ -82,7 +82,7 @@ p{line-height:1.72}
 
 /* Cita + fecha compactas */
 .quote-section{padding-top:64px;padding-bottom:44px}
-.quote-card{max-width:650px;margin:auto;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.055);padding:30px 24px;border-radius:28px;text-align:center}
+.quote-card{max-width:650px;margin:auto;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.032);padding:30px 24px;border-radius:28px;text-align:center;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .quote-mark{display:block;font:62px/1 Georgia,serif;color:var(--gold)}
 .quote-card p{font:italic 500 clamp(1.35rem,5vw,2.05rem)/1.42 Georgia,serif;margin:2px 0 18px}
 .quote-card small{color:var(--gold);letter-spacing:.15em}
@@ -120,7 +120,7 @@ p{line-height:1.72}
 .place-media{position:absolute;inset:0;overflow:hidden}
 .place-photo{width:100%;height:112%;object-fit:cover;transform:scale(1.12);will-change:transform}
 .place-photo-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,8,18,.03) 20%,rgba(16,8,18,.16) 48%,rgba(16,8,18,.88) 100%)}
-.place-card-body{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;padding:19px 20px;border:1px solid rgba(255,255,255,.20);border-radius:23px;background:linear-gradient(180deg,rgba(25,11,29,.24),rgba(25,11,29,.38));backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);color:white;box-shadow:0 12px 34px rgba(0,0,0,.14);will-change:transform}
+.place-card-body{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;padding:19px 20px;border:1px solid rgba(255,255,255,.18);border-radius:23px;background:linear-gradient(180deg,rgba(25,11,29,.12),rgba(25,11,29,.24));backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:white;box-shadow:0 12px 34px rgba(0,0,0,.12);will-change:transform}
 .place-index{position:absolute;right:20px;top:14px;font:italic 500 3.8rem/.9 Georgia,serif;color:rgba(228,195,132,.24)}
 .place-tag{font-size:.68rem;color:var(--gold);font-weight:900;text-transform:uppercase;letter-spacing:.16em}
 .place-card h3{font-size:clamp(1.9rem,7.2vw,2.85rem);line-height:.98;margin:8px 55px 7px 0}
@@ -212,7 +212,7 @@ p{line-height:1.72}
 
 /* RSVP */
 .rsvp-section{min-height:88svh;display:grid;align-items:center;background:radial-gradient(circle at 50% 18%,rgba(228,195,132,.1),transparent 24%),linear-gradient(180deg,#2b132b,#130a17)}
-.rsvp-card{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);border-radius:30px;padding:38px 24px;text-align:center;box-shadow:var(--shadow)}
+.rsvp-card{border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.042);border-radius:30px;padding:38px 24px;text-align:center;box-shadow:var(--shadow);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .final-mark{width:86px;height:86px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;font:italic 32px Georgia,serif;color:var(--gold)}
 .rsvp-status{color:rgba(255,255,255,.66)}
 .rsvp-buttons{display:grid;gap:12px;margin-top:25px}
@@ -228,7 +228,7 @@ p{line-height:1.72}
 .finale-section{position:relative;min-height:74svh;max-height:860px;overflow:hidden;display:grid;align-items:end;background:#1b0c1f;padding:22px 18px;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
 .finale-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center}
 .finale-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,8,20,.14) 10%,rgba(17,8,20,.30) 48%,rgba(17,8,20,.88) 100%)}
-.finale-content{position:relative;z-index:2;max-width:640px;width:100%;margin:0 auto;padding:34px 20px max(34px,calc(22px + env(safe-area-inset-bottom)));text-align:center;text-shadow:0 5px 28px rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.12);border-radius:28px;background:linear-gradient(180deg,rgba(38,18,43,.14),rgba(38,18,43,.32));backdrop-filter:blur(6px)}
+.finale-content{position:relative;z-index:2;max-width:640px;width:100%;margin:0 auto;padding:34px 20px max(34px,calc(22px + env(safe-area-inset-bottom)));text-align:center;text-shadow:0 5px 28px rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.10);border-radius:28px;background:linear-gradient(180deg,rgba(38,18,43,.08),rgba(38,18,43,.20));backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .finale-content h2{font:italic 500 clamp(3.25rem,13vw,5.6rem)/.88 Georgia,serif;margin:10px 0 8px}
 .finale-xv{color:var(--gold);letter-spacing:.26em;font-weight:850}
 .finale-content>p{margin:7px auto;color:rgba(255,255,255,.82)}
@@ -241,7 +241,7 @@ p{line-height:1.72}
 .thankyou-screen.visible{opacity:1;visibility:visible}
 .thankyou-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .thankyou-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,8,20,.12),rgba(17,8,20,.72) 58%,rgba(17,8,20,.94))}
-.thankyou-shell{position:relative;z-index:2;width:min(100%,560px);padding:38px 24px;border-radius:30px;text-align:center;border:1px solid rgba(255,255,255,.13);background:rgba(25,11,29,.46);backdrop-filter:blur(13px);box-shadow:0 28px 70px rgba(0,0,0,.34)}
+.thankyou-shell{position:relative;z-index:2;width:min(100%,560px);padding:38px 24px;border-radius:30px;text-align:center;border:1px solid rgba(255,255,255,.11);background:rgba(25,11,29,.28);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 28px 70px rgba(0,0,0,.30)}
 .thankyou-shell h2{margin-bottom:14px}
 .thankyou-shell p{max-width:430px;margin:0 auto;color:rgba(255,255,255,.78)}
 .thankyou-summary{display:grid;gap:5px;margin:24px auto 0;padding:18px 0;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12)}
@@ -316,74 +316,16 @@ body.modal-open{overflow:hidden}
 }
 
 
-/* RSVP complementario por WhatsApp — V10.5 */
-.whatsapp-rsvp-box{
-  margin-top:16px;
-  padding:14px;
-  border:1px solid rgba(255,255,255,.13);
-  border-radius:20px;
-  background:rgba(255,255,255,.055);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-}
-.whatsapp-rsvp-box[hidden]{display:none!important}
-.btn-whatsapp{
-  width:100%;
-  min-height:50px;
-  background:rgba(255,255,255,.94);
-  color:var(--plum);
-  box-shadow:0 10px 26px rgba(0,0,0,.10);
-}
-.whatsapp-rsvp-hint{
-  margin:10px 4px 0;
-  color:rgba(255,255,255,.66);
-  font-size:.84rem;
-  line-height:1.5;
-}
-
-
-/* WhatsApp RSVP robusto — V10.7 */
-.btn-whatsapp{
-  text-decoration:none;
-}
-.whatsapp-modal-box{
-  margin-top:14px;
-  padding:15px;
-  border:1px solid rgba(124,58,98,.15);
-  border-radius:18px;
-  background:rgba(124,58,98,.06);
-}
-.whatsapp-modal-box[hidden]{display:none!important}
-.whatsapp-modal-success{
-  margin:0 0 12px;
-  color:#257748;
-  font-weight:850;
-  text-align:center;
-  line-height:1.45;
-}
-.whatsapp-modal-note{
-  margin:10px 2px 12px;
-  color:var(--muted);
-  font-size:.78rem;
-  line-height:1.5;
-  text-align:center;
-}
-.btn-modal-continue{
-  width:100%;
-  min-height:46px;
-  background:transparent;
-  color:var(--wine);
-  border:1px solid rgba(124,58,98,.20);
-}
-
 
 /* Contacto del evento — YRWTECH-01 */
 .event-contact-box{
   margin:14px 0 16px;
   padding:14px 16px;
-  border:1px solid rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.12);
   border-radius:18px;
-  background:rgba(255,255,255,.055);
+  background:rgba(255,255,255,.035);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
   text-align:center;
 }
 .event-contact-box[hidden]{display:none!important}
@@ -400,34 +342,4 @@ body.modal-open{overflow:hidden}
   word-break:break-word;
 }
 
-/* WhatsApp robusto — YRWTECH-01 */
-.btn-whatsapp{text-decoration:none}
-.whatsapp-modal-box{
-  margin-top:14px;
-  padding:15px;
-  border:1px solid rgba(124,58,98,.15);
-  border-radius:18px;
-  background:rgba(124,58,98,.06);
-}
-.whatsapp-modal-box[hidden]{display:none!important}
-.whatsapp-modal-success{
-  margin:0 0 12px;
-  color:#257748;
-  font-weight:850;
-  text-align:center;
-  line-height:1.45;
-}
-.whatsapp-modal-note{
-  margin:10px 2px 12px;
-  color:var(--muted);
-  font-size:.78rem;
-  line-height:1.5;
-  text-align:center;
-}
-.btn-modal-continue{
-  width:100%;
-  min-height:46px;
-  background:transparent;
-  color:var(--wine);
-  border:1px solid rgba(124,58,98,.20);
-}
+

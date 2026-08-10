@@ -11,7 +11,7 @@ window.INVITACION = {
   intro: {
     foto: "./assets/fotos/sobre.jpg",
     mensaje: "Tiene algo muy especial que compartir contigo.",
-    instruccion: "Abre aquí",
+    instruccion: "Toca el sello para abrir la invitación",
     hotspot: {
       x: 0.421,
       y: 0.617,
@@ -128,11 +128,9 @@ window.INVITACION = {
     rechazo: "No asistiré",
     pedirDatosEnRechazo: true
   },
-
-  // WhatsApp es un canal complementario al correo.
-  // El número debe ir en formato internacional y solo con dígitos.
-    whatsappRSVP: {
-    activo: true,
+  // Flujo limpio: el RSVP se envía solo por correo.
+  whatsappRSVP: {
+    activo: false,
     encabezado: "RESPUESTA A LA INVITACIÓN"
   },
 

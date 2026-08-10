@@ -1,3 +1,5 @@
+> Versión actual: **YRWTECH-02**
+
 # Invitación XV — Sofía Mendoza
 
 Invitación digital móvil desarrollada en HTML, CSS y JavaScript puro para publicarse con GitHub Pages.

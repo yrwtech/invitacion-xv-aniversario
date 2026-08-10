@@ -33,15 +33,6 @@ function renderRuntimeContact(){
   }else if(box){
     box.hidden=true;
   }
-
-  if(typeof getStoredRSVP==="function"&&typeof configureWhatsAppRSVP==="function"){
-    const stored=getStoredRSVP();
-    if(stored==="Confirmo"||stored==="No asistiré"){
-      configureWhatsAppRSVP(
-        typeof getStoredRSVPData==="function" ? getStoredRSVPData() : null
-      );
-    }
-  }
 }
 
 function initRuntimeConfig(){
@@ -96,7 +87,7 @@ function render(){
 
   setText("#introName",first);
   setText("#introMessage",C.intro?.mensaje||"Tiene algo muy especial que compartir contigo.");
-  setText("#introInstruction",C.intro?.instruccion||"Abre aquí");
+  setText("#introInstruction",C.intro?.instruccion||"Toca el sello para abrir la invitación");
   setText("#heroName",first);
   setText("#heroMessage",C.portada.mensaje);
   setText("#quoteText",C.frase);
@@ -671,35 +662,9 @@ function storeRSVP(response,data=null){
 
 
 function buildWhatsAppRSVP(data={}){
-  const w=C.whatsappRSVP;
-  const telefono=String(EVENT_RUNTIME.eventWhatsappTo||"").replace(/\D/g,"");
-  if(!w?.activo||!telefono)return null;
-
-  const respuesta=data.respuesta||getStoredRSVP()||"";
-  if(!respuesta)return null;
-
-  const estado=respuesta==="Confirmo"?"✅":"❌";
-  const texto=[
-    `💗 ${w.encabezado||"RESPUESTA A LA INVITACIÓN"}`,
-    "",
-    `XV de ${C.festejada}`,
-    C.fechaTexto,
-    "",
-    `${estado} Respuesta: ${respuesta}`
-  ];
-
-  if(data.nombre||data.correo||data.whatsapp){
-    texto.push("");
-    if(data.nombre)texto.push(`👤 Nombre: ${data.nombre}`);
-    if(data.correo)texto.push(`📧 Correo: ${data.correo}`);
-    if(data.whatsapp)texto.push(`📱 WhatsApp: ${data.whatsapp}`);
-  }
-
-  if(data.comentarios){
-    texto.push("","💬 Comentarios:",data.comentarios);
-  }
-
-  return `https://wa.me/${telefono}?text=${encodeURIComponent(texto.join("\\n"))}`;
+  // Flujo desactivado: el RSVP complementario por WhatsApp fue retirado
+  // para conservar una experiencia más limpia dentro de la invitación.
+  return null;
 }
 
 function configureWhatsAppRSVP(data=null){
@@ -708,23 +673,11 @@ function configureWhatsAppRSVP(data=null){
   const modalBox=$("#whatsappModalBox");
   const modalLink=$("#whatsappModalLink");
 
-  const storedData=getStoredRSVPData();
-  const payload=data||storedData||{respuesta:getStoredRSVP()};
-  const url=buildWhatsAppRSVP(payload);
-
-  if(!url){
-    if(box)box.hidden=true;
-    if(modalBox)modalBox.hidden=true;
-    if(cardLink)cardLink.removeAttribute("href");
-    if(modalLink)modalLink.removeAttribute("href");
-    return null;
-  }
-
-  if(cardLink)cardLink.href=url;
-  if(modalLink)modalLink.href=url;
-  if(box)box.hidden=false;
-
-  return url;
+  if(box)box.hidden=true;
+  if(modalBox)modalBox.hidden=true;
+  if(cardLink)cardLink.removeAttribute("href");
+  if(modalLink)modalLink.removeAttribute("href");
+  return null;
 }
 
 function applyCompletedRSVP(response,shouldStore=true,data=null){
@@ -743,16 +696,11 @@ function applyCompletedRSVP(response,shouldStore=true,data=null){
     $("#rsvpStatus").textContent="Respuesta registrada: no asistirás. Gracias por avisarnos.";
   }
 
-  configureWhatsAppRSVP(payload);
   $("#exitButton").hidden=false;
 }
 
 function openRSVPModal(response){
   pendingResponse=response;
-  const whatsappBox=$("#whatsappRSVPBox");
-  const whatsappModalBox=$("#whatsappModalBox");
-  if(whatsappBox)whatsappBox.hidden=true;
-  if(whatsappModalBox)whatsappModalBox.hidden=true;
   $("#rsvpResponse").value=response;
   $("#rsvpModalTitle").textContent=response==="Confirmo"?"Confirma tus datos":"Datos de contacto";
   $("#submitRSVP").textContent=response==="Confirmo"?"Enviar confirmación":"Enviar respuesta";
@@ -819,18 +767,15 @@ async function submitRSVPForm(e){
     };
     applyCompletedRSVP(pendingResponse,true,rsvpData);
 
-    // V10.7: mostramos la acción de WhatsApp dentro del mismo modal,
-    // inmediatamente después del envío por correo. Así el usuario no
-    // depende de descubrir un botón debajo del modal o tras un auto-cierre.
-    const whatsappURL=configureWhatsAppRSVP({
-      ...rsvpData,
-      respuesta:pendingResponse
-    });
-    const whatsappModalBox=$("#whatsappModalBox");
-    if(whatsappURL&&whatsappModalBox)whatsappModalBox.hidden=false;
-
-    submit.hidden=true;
     submit.disabled=false;
+
+    setTimeout(()=>{
+      closeRSVPModal();
+      $("#rsvpForm").reset();
+      submit.hidden=false;
+      submit.textContent=pendingResponse==="Confirmo"?"Enviar confirmación":"Enviar respuesta";
+      status.textContent="";
+    },450);
   }catch(err){
     console.error(err);
     status.textContent="No pudimos enviar tus datos. Intenta nuevamente.";

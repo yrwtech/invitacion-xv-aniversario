@@ -1,5 +1,13 @@
 # Changelog
 
+## YRWTECH-02
+- Se retiró el flujo complementario de RSVP por WhatsApp para recuperar una experiencia más limpia dentro de la invitación.
+- La confirmación vuelve a quedar únicamente por correo mediante Apps Script.
+- La invitación inicial ahora indica con texto directo: “Toca el sello para abrir la invitación”.
+- Se eliminó la flecha del sello y se rediseñó la cápsula de instrucción.
+- Los bloques translúcidos fueron ajustados para ser más transparentes y dejar apreciar mejor las fotografías de fondo.
+- Cache-busting actualizado a `yrwtech-02`.
+
 ## YRWTECH-01
 - Migración del repositorio a `yrwtech/invitacion-xv-aniversario`.
 - Nuevo backend Apps Script creado y autorizado bajo `yrw.events@gmail.com`.
