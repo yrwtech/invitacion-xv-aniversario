@@ -87,7 +87,7 @@ function render(){
 
   setText("#introName",first);
   setText("#introMessage",C.intro?.mensaje||"Tiene algo muy especial que compartir contigo.");
-  setText("#introInstruction",C.intro?.instruccion||"Toca el sello para abrir la invitación");
+  setText("#introInstruction",C.intro?.instruccion||"Toca el sello para descubrir tu invitación");
   setText("#heroName",first);
   setText("#heroMessage",C.portada.mensaje);
   setText("#quoteText",C.frase);
@@ -98,7 +98,17 @@ function render(){
   setText("#dressCodeText",C.dressCode.texto);
   setText("#giftsText",C.regalos.texto);
   setText("#finalInitial",C.inicial);
-  setText("#footerText",C.pie);
+  if(typeof C.pie==="object"&&C.pie){
+    setText("#footerBrand",C.pie.marca||"Invitación digital creada por YRW Tech");
+    setText("#footerService",C.pie.servicio||"Diseñamos invitaciones digitales personalizadas");
+    const footerContact=$("#footerContact");
+    if(footerContact){
+      footerContact.textContent=C.pie.contacto||"yrw.events@gmail.com";
+      footerContact.href=`mailto:${C.pie.contacto||"yrw.events@gmail.com"}`;
+    }
+  }else{
+    setText("#footerBrand",C.pie||"Invitación digital creada por YRW Tech");
+  }
 
   $("#introPhoto").src=C.intro?.foto||C.portada.foto;
   $("#heroPhoto").src=C.portada.foto;

@@ -1,5 +1,5 @@
 // ==========================================================
-// CONFIGURACIÓN PRINCIPAL DE LA INVITACIÓN — YRWTECH-01
+// CONFIGURACIÓN PRINCIPAL DE LA INVITACIÓN — YRWTECH-03
 // ==========================================================
 window.INVITACION = {
   festejada: "Sofía Mendoza",
@@ -11,7 +11,7 @@ window.INVITACION = {
   intro: {
     foto: "./assets/fotos/sobre.jpg",
     mensaje: "Tiene algo muy especial que compartir contigo.",
-    instruccion: "Toca el sello para abrir la invitación",
+    instruccion: "Toca el sello para descubrir tu invitación",
     hotspot: {
       x: 0.421,
       y: 0.617,
@@ -134,5 +134,9 @@ window.INVITACION = {
     encabezado: "RESPUESTA A LA INVITACIÓN"
   },
 
-  pie: "Invitación digital creada por YRW Tech · ¿Quieres una invitación como esta? · yrw.events@gmail.com"
+  pie: {
+    marca: "Invitación digital creada por YRW Tech",
+    servicio: "Diseñamos invitaciones digitales personalizadas",
+    contacto: "yrw.events@gmail.com"
+  }
 };

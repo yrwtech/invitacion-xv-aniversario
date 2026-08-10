@@ -1,5 +1,13 @@
 # Changelog
 
+## YRWTECH-03
+- Portada refinada: la instrucción para abrir deja de parecer un botón y se integra como texto editorial debajo del sello.
+- Nuevo copy: “Toca el sello para descubrir tu invitación”.
+- Contacto del evento reescrito como “¿Deseas más información sobre el evento? / Escríbenos a”.
+- Footer YRW Tech separado en marca, propuesta de servicio y correo para evitar texto encimado.
+- Transparencias de overlays fotográficos refinadas para una apariencia más ligera y premium.
+- Cache-busting actualizado a `yrwtech-03`.
+
 ## YRWTECH-02
 - Se retiró el flujo complementario de RSVP por WhatsApp para recuperar una experiencia más limpia dentro de la invitación.
 - La confirmación vuelve a quedar únicamente por correo mediante Apps Script.

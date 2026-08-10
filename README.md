@@ -1,4 +1,4 @@
-> Versión actual: **YRWTECH-02**
+> Versión actual: **YRWTECH-03**
 
 # Invitación XV — Sofía Mendoza
 

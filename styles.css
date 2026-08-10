@@ -60,9 +60,10 @@ p{line-height:1.72}
 .seal-touch-area{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
 .seal-ring{position:absolute;width:58%;aspect-ratio:1;border-radius:50%;border:1.5px solid rgba(255,238,197,.88);box-shadow:0 0 0 1px rgba(124,58,98,.14),0 0 22px rgba(228,195,132,.34);animation:sealPulse 1.9s cubic-bezier(.2,.72,.2,1) infinite}
 .seal-ring-delay{animation-delay:.72s}
-.seal-instruction{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0;min-width:220px;color:white;text-shadow:0 2px 12px rgba(0,0,0,.85);pointer-events:none;opacity:0;animation:introText .8s ease 1s forwards}
+.seal-instruction{position:absolute;left:50%;top:calc(100% + 18px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;min-width:240px;color:white;text-shadow:0 3px 18px rgba(0,0,0,.88);pointer-events:none;opacity:0;animation:introText .8s ease 1s forwards}
 .seal-arrow{font-size:1.25rem;line-height:1;color:#ffe7ae;animation:sealArrow 1.25s ease-in-out infinite}
-.seal-instruction strong{padding:8px 14px;border-radius:18px;background:rgba(20,8,23,.24);border:1px solid rgba(255,255,255,.20);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:.72rem;line-height:1.35;letter-spacing:.02em;text-transform:none;white-space:normal;max-width:235px;text-align:center}
+.seal-instruction strong{position:relative;padding:0;background:none;border:0;backdrop-filter:none;-webkit-backdrop-filter:none;font:italic 500 .84rem/1.35 Georgia,"Times New Roman",serif;letter-spacing:.015em;text-transform:none;white-space:normal;max-width:260px;text-align:center;color:rgba(255,255,255,.94)}
+.seal-instruction strong:before{content:"";display:block;width:34px;height:1px;margin:0 auto 8px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.88}
 @keyframes sealPulse{0%{opacity:.92;transform:scale(.82)}62%{opacity:.08;transform:scale(1.38)}100%{opacity:0;transform:scale(1.48)}}
 @keyframes sealArrow{0%,100%{transform:translateY(-2px);opacity:.72}50%{transform:translateY(4px);opacity:1}}
 .intro.opening .intro-photo{filter:brightness(1.08)}
@@ -250,7 +251,7 @@ p{line-height:1.72}
 .thankyou-signature{margin-top:22px;font:italic 500 1.3rem Georgia,serif;color:#fff}
 .thankyou-shell small{display:block;margin-top:22px;color:rgba(255,255,255,.36);letter-spacing:.08em}
 body.thankyou-open .site,body.thankyou-open .progress,body.thankyou-open .floating-button{filter:blur(4px);pointer-events:none}
-footer{padding:32px 22px 70px;text-align:center;color:rgba(255,255,255,.38);font-size:.75rem;background:#130a17}
+footer{padding:42px 24px 88px;text-align:center;background:#130a17}
 
 /* Modal */
 .modal{position:fixed;inset:0;z-index:1200;display:none;align-items:flex-end;justify-content:center}
@@ -317,29 +318,68 @@ body.modal-open{overflow:hidden}
 
 
 
-/* Contacto del evento — YRWTECH-01 */
+/* Contacto del evento — YRWTECH-03 */
 .event-contact-box{
-  margin:14px 0 16px;
-  padding:14px 16px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:18px;
-  background:rgba(255,255,255,.035);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
+  margin:18px 0 18px;
+  padding:17px 18px 18px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:20px;
+  background:rgba(255,255,255,.026);
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
   text-align:center;
 }
 .event-contact-box[hidden]{display:none!important}
-.event-contact-box span{
+.event-contact-title{
   display:block;
-  margin-bottom:5px;
-  color:rgba(255,255,255,.66);
-  font-size:.78rem;
+  color:rgba(255,255,255,.76);
+  font-size:.86rem;
+  line-height:1.5;
+}
+.event-contact-copy{
+  display:block;
+  margin-top:5px;
+  color:rgba(255,255,255,.48);
+  font-size:.72rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
 }
 .event-contact-box a{
+  display:inline-block;
+  margin-top:4px;
   color:var(--gold);
-  font-weight:850;
+  font-weight:780;
+  font-size:1rem;
   text-decoration:none;
   word-break:break-word;
 }
 
 
+
+
+/* Firma YRW Tech — YRWTECH-03 */
+.site-footer{
+  display:grid;
+  justify-items:center;
+  gap:6px;
+  color:rgba(255,255,255,.44);
+}
+.footer-brand{
+  font-size:.78rem;
+  letter-spacing:.035em;
+  color:rgba(255,255,255,.48);
+}
+.footer-service{
+  max-width:340px;
+  font-size:.72rem;
+  line-height:1.45;
+  color:rgba(255,255,255,.32);
+}
+.footer-contact{
+  margin-top:3px;
+  color:rgba(228,195,132,.78);
+  font-size:.76rem;
+  font-weight:700;
+  text-decoration:none;
+  letter-spacing:.02em;
+}
